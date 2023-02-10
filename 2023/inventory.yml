@@ -5,7 +5,7 @@ all:
       ansible_host: "172.25.32.9"
       ansible_port: "22"
       ansible_connection: "ssh"
-      ansible_ssh_common_args: "-oHostKeyAlgorithms=+ssh-dss"
+      ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss StrictHostKeyChecking=no"
       ansible_user: "{{ centosECOMMUser }}"
       ansible_password: "{{ centosECOMMPass }}"
   vars:
