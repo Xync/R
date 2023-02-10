@@ -20,7 +20,7 @@ all:
           ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
           ansible_user: "{{ splunkUser }}"
           ansible_password: "{{ splunkPass }}"
-          ansible_python_interpreter: "/usr/bin/python2"
+          ansible_python_interpreter: "/usr/bin/python"
     windows:
       hosts:
   vars:
