@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: linux
   tasks:
   - name: Add the user 'zonifer' with a bash shell, appending the group 'wheel' and 'sysadmin' to the user's groups
     ansible.builtin.user:
