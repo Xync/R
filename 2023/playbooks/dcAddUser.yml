@@ -5,10 +5,10 @@
   tasks:
     - name: Add Domain Admin
         community.windows.win_domain_user:
-        name: com.service
-        password: "Sup3rL0ngP@ssw0rd,Youcantcrackme!"
-        state: present
-        groups_action: add
-        groups:
-          - ServiceAccounts
-          - Domain Admins
+          name: com.service
+          password: "Sup3rL0ngP@ssw0rd,Youcantcrackme!"
+          state: present
+          groups_action: add
+          groups:
+            - ServiceAccounts
+            - Domain Admins
