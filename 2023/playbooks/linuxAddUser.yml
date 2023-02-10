@@ -1,5 +1,6 @@
 - hosts: linux
   tasks:
+  become: true
   - name: Add the user 'zonifer' with a bash shell
     ansible.builtin.user:
       name: zonifer

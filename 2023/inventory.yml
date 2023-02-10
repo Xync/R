@@ -33,10 +33,6 @@ all:
         #  ansible_python_interpreter: "/opt/splunk/bin/python3"
         debianNTP/DNS:
           # Internal Debain NTP/DNS machine
-          become: true
-          ansible_become_user: "root"
-          ansible_become_pass: "changeme"
-          ansible_become_method: su
           ansible_host: "172.25.32.20"
           ansible_port: "22"
           ansible_connection: "ssh"
@@ -44,7 +40,10 @@ all:
           ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
           ansible_user: "{{ debianUser }}"
           ansible_password: "{{ debianPass }}"
-
+          become: true
+          ansible_become_user: "root"
+          ansible_become_pass: "changeme"
+          ansible_become_method: su
     windows:
       hosts:
        dc:
