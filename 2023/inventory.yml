@@ -31,6 +31,19 @@ all:
         #  ansible_user: "{{ splunkUser }}"
         #  ansible_password: "{{ splunkPass }}"
         #  ansible_python_interpreter: "/opt/splunk/bin/python3"
+        debianNTP/DNS:
+          # Internal Debain NTP/DNS machine
+          ansible_host: "172.25.32.20"
+          ansible_port: "22"
+          ansible_connection: "ssh"
+          ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
+          ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+          ansible_user: "{{ debianUser }}"
+          ansible_password: "{{ debianPass }}"
+          become: true
+          become_method: su
+          become_user: root
+          register: changeme
     windows:
       hosts:
        dc:
@@ -53,4 +66,6 @@ all:
     fedoraPass: "!Password123"
     splunkUser: "root"
     splunkPass: "changemenow"
+    debianUser: "sysadmin"
+    debianPass: "changeme"
 
