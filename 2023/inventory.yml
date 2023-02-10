@@ -58,7 +58,7 @@ all:
           ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
           ansible_user: "{{ ubuntuWebUser }}"
           ansible_password: "{{ ubuntuWebPass }}"
-          ansible_python_interpreter: "/usr/bin/python3"
+          ansible_python_interpreter: "/usr/bin/python"
           #ansible_become_user: "root"
           ansible_become_pass: "changeme"
           ansible_become_method: sudo
