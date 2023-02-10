@@ -8,7 +8,7 @@
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      groups: wheel,root
+      groups: admin,root,sudo
       append: yes
 
   - name: Add the user 'svc' with a bash shell
