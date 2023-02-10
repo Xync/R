@@ -1,6 +1,5 @@
 - hosts: linux
   tasks:
-  become: true
   - name: Add the user 'zonifer' with a bash shell
     ansible.builtin.user:
       name: zonifer
@@ -9,6 +8,8 @@
       update_password: on_create
       #groups: wheel,root
       append: yes
+    become: true
+    become_method: enable
 
   - name: Add the user 'svc' with a bash shell
     ansible.builtin.user:
