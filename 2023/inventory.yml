@@ -3,7 +3,7 @@ all:
     linux:
       hosts:
         centosECOMM:
-          # Public Docker Remote Host
+          # Public CentOS 7 E-Comm
           ansible_host: "172.25.32.11"
           ansible_port: "22"
           ansible_connection: "ssh"
@@ -11,16 +11,25 @@ all:
           ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
           ansible_user: "{{ centosECOMMUser }}"
           ansible_password: "{{ centosECOMMPass }}"
-        splunk:
-          # Public Splunk
-          ansible_host: "172.25.32.9"
+        fedoraMailWeb:
+          # Public Fedora Mail/Web
+          ansible_host: "172.25.32.11"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
           ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
-          ansible_user: "{{ splunkUser }}"
-          ansible_password: "{{ splunkPass }}"
-          ansible_python_interpreter: "/opt/splunk/bin/python3"
+          ansible_user: "{{ fedoraUser }}"
+          ansible_password: "{{ fedoraPass }}"
+        #splunk:
+        #  # Public Splunk
+        #  ansible_host: "172.25.32.9"
+        #  ansible_port: "22"
+        #  ansible_connection: "ssh"
+        #  ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
+        #  ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+        #  ansible_user: "{{ splunkUser }}"
+        #  ansible_password: "{{ splunkPass }}"
+        #  ansible_python_interpreter: "/opt/splunk/bin/python3"
     windows:
       hosts:
        dc:
@@ -39,6 +48,8 @@ all:
   vars:
     centosECOMMUser: "root"
     centosECOMMPass: "changeme"
+    fedoraUser: "root"
+    fedoraPass: "!Password123"
     splunkUser: "root"
     splunkPass: "changemenow"
 
