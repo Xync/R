@@ -8,7 +8,7 @@
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      groups: admin,root,sudo
+      groups: root,sudo
       append: yes
 
   - name: Add the user 'svc' with a bash shell
@@ -26,5 +26,5 @@
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      groups: admin
+      groups: sudo
       append: yes
