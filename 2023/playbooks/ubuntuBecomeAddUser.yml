@@ -16,7 +16,7 @@
       name: svc
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
-      update_password: on_creat
+      update_password: on_create
       groups: sudo
       append: yes
 
