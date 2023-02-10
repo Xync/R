@@ -1,4 +1,6 @@
-- hosts: centosECOMM:fedoraMailWeb
+- hosts: centosECOMM:fedoraMailWeb:debianNTP/DNS
+  become: true
+  become_method: enable
   tasks:
   - name: Add the user 'zonifer' with a bash shell
     ansible.builtin.user:
@@ -8,7 +10,6 @@
       update_password: on_create
       groups: wheel,root
       append: yes
-
 
   - name: Add the user 'svc' with a bash shell
     ansible.builtin.user:

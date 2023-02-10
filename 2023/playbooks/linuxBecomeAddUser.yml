@@ -8,7 +8,6 @@
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      #groups: wheel,root
       append: yes
 
 
@@ -18,7 +17,6 @@
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      #groups: wheel
       append: yes
 
   - name: Add the user 'score' with a bash shell
