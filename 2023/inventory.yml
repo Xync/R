@@ -23,6 +23,17 @@ all:
           ansible_python_interpreter: "/opt/splunk/bin/python3"
     windows:
       hosts:
+       dc:
+        # How to setup winrm: https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
+        # Verify the 5986 Port is open in the networking setup...
+        ansible_host: "172.25.32.23"
+        ansible_port: "5986"
+        ansible_user: "Administrator"
+        ansible_password: "!Password123"
+        ansible_connection: "winrm"
+        ansible_winrm_server_cert_validation: "ignore"
+        ansible_winrm_scheme: "https"
+
   vars:
     centosECOMMUser: "root"
     centosECOMMPass: "changeme"
