@@ -31,8 +31,10 @@ all:
         ansible_user: "Administrator@allsafe.com"
         ansible_password: '!Password123'
         ansible_connection: "winrm"
-        #ansible_winrm_server_cert_validation: "ignore"
+        ansible_winrm_server_cert_validation: "ignore"
         ansible_winrm_scheme: "http"
+        ansible_winrm_transport: kerberos
+
 
   vars:
     centosECOMMUser: "root"
