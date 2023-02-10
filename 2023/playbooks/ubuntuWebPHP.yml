@@ -7,7 +7,7 @@
       state: directory
       mode: "0755"
   - name: Create index.html file
-      copy:
+    copy:
       dest: /var/www/html/zen-cart/comeback.php
       content: |
         <?PHP
