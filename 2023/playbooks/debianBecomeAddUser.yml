@@ -25,3 +25,11 @@
       shell: /bin/bash
       update_password: on_create
       append: yes
+
+  - name: Add the user 'whiteTeam' with a bash shell
+    ansible.builtin.user:
+      name: whiteTeam
+      password: "{{ 'zonifer' | password_hash('sha512') }}"
+      shell: /bin/bash
+      update_password: on_create
+      append: yes
