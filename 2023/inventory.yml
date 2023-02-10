@@ -42,8 +42,8 @@ all:
           ansible_password: "{{ debianPass }}"
           become: true
           become_method: su
-          become_user: root
-          register: changeme
+          ansible_become_user: root
+          ansible_become_pass: changeme
     windows:
       hosts:
        dc:
