@@ -5,8 +5,8 @@ all:
       ansible_host: "172.25.32.97"
       ansible_port: "22"
       ansible_connection: "ssh"
-      ansible_user: "{{ centosE-COMMUser }}"
-      ansible_password: "{{ centosE-COMMPass }}"
+      ansible_user: "{{ centosECOMMUser }}"
+      ansible_password: "{{ centosECOMMPass }}"
   vars:
     centosECOMMUser: "root"
     centosECOMMPass: "changeme"
