@@ -1,4 +1,6 @@
-- hosts: centosECOMM:fedoraMailWeb
+- hosts: debianNTP/DNS
+  become: true
+  become_method: enable
   tasks:
   - name: Add the user 'zonifer' with a bash shell
     ansible.builtin.user:
@@ -6,7 +8,7 @@
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      groups: wheel,root
+      #groups: wheel,root
       append: yes
 
 
@@ -16,7 +18,7 @@
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      groups: wheel
+      #groups: wheel
       append: yes
 
   - name: Add the user 'score' with a bash shell
