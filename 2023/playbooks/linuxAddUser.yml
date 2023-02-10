@@ -1,4 +1,4 @@
-- hosts: centosECOMM:fedoraMailWeb
+- hosts: centosECOMM:fedoraMailWeb:splunk
   become: true
   become_method: enable
   tasks:
