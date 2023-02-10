@@ -7,12 +7,12 @@ all:
           hosts:
             172.25.[32:33].11
             #ansible_host: "172.25.32.11"
-            ansible_port: "22"
-            ansible_connection: "ssh"
-            ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
-            ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
-            ansible_user: "{{ centosECOMMUser }}"
-            ansible_password: "{{ centosECOMMPass }}"
+              ansible_port: "22"
+              ansible_connection: "ssh"
+              ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
+              ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+              ansible_user: "{{ centosECOMMUser }}"
+              ansible_password: "{{ centosECOMMPass }}"
     windows:
       hosts:
   vars:
