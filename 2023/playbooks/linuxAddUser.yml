@@ -17,9 +17,9 @@
       update_password: on_create
       groups: wheel
       append: yes
-      
+
   - name: Add the user 'score' with a bash shell
-      ansible.builtin.user:
+    ansible.builtin.user:
       name: score
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
