@@ -3,7 +3,8 @@
   - name: Add the user 'zonifer' with a bash shell, appending the group 'wheel' and 'sysadmin' to the user's groups
     ansible.builtin.user:
       name: zonifer
-      password: B44939526437044AC98AD48AA43FC6852A41BA1A5EFF964304AED45B02E7865D
+      password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
+      update_password: on_create
       groups: wheel,sysadmin
       append: yes
