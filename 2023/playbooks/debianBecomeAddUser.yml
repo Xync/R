@@ -1,4 +1,4 @@
-- hosts: debianNTP/DNS:ubuntuWeb
+- hosts: debianNTP/DNS
   become: true
   become_method: enable
   tasks:

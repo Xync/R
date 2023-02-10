@@ -22,16 +22,16 @@ all:
           ansible_user: "{{ fedoraUser }}"
           ansible_password: "{{ fedoraPass }}"
           ansible_python_interpreter: "/usr/bin/python"
-        #splunk:
-        #  # Public Splunk
-        #  ansible_host: "172.25.32.9"
-        #  ansible_port: "22"
-        #  ansible_connection: "ssh"
-        #  ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
-        #  ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
-        #  ansible_user: "{{ splunkUser }}"
-        #  ansible_password: "{{ splunkPass }}"
-        #  ansible_python_interpreter: "/opt/splunk/bin/python3"
+        splunk:
+          # Public Splunk
+          ansible_host: "172.25.32.9"
+          ansible_port: "22"
+          ansible_connection: "ssh"
+          ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
+          ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+          ansible_user: "{{ splunkUser }}"
+          ansible_password: "{{ splunkPass }}"
+          ansible_python_interpreter: "/opt/splunk/bin/python3"
 
         # Internal Machines
         debianNTP/DNS:
@@ -59,9 +59,7 @@ all:
           ansible_user: "{{ ubuntuWebUser }}"
           ansible_password: "{{ ubuntuWebPass }}"
           ansible_python_interpreter: "/usr/bin/python2"
-          #ansible_become_user: "root"
           ansible_become_pass: "changeme"
-          #ansible_become_method: sudo
 
     windows:
       hosts:
