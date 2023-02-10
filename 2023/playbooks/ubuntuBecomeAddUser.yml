@@ -1,4 +1,4 @@
-- hosts: ubuntuWeb:ubuntuWkst
+- hosts: ubuntuWeb
   become: true
   become_method: sudo
   tasks:
