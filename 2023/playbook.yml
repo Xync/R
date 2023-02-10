@@ -1,11 +1,8 @@
 - hosts: all
   tasks:
-  - name: ping
-    - action: ping
-
   - name: Add the user 'zonifer' with a bash shell, appending the group 'wheel' and 'sudo' to the user's groups
-  ansible.builtin.user:
-    name: zonifer
-    shell: /bin/bash
-    groups: wheel,sudo
-    append: yes
+    ansible.builtin.user:
+      name: zonifer
+      shell: /bin/bash
+      groups: wheel,sudo
+      append: yes
