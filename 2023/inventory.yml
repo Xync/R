@@ -5,7 +5,7 @@ all:
         centosECOMM:
           # Docker Remote Host
           hosts:
-            "172.25.[32:33].11"
+            172.25.[32:33].11
             #ansible_host: "172.25.32.11"
             ansible_port: "22"
             ansible_connection: "ssh"
