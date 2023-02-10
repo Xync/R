@@ -1,7 +1,6 @@
-- name: Add a web directory
-  hosts: ubuntuWeb
-  become: true
+- hosts: ubuntuWeb
   tasks:
+  become: true
   - name: Create web directory
     file:
       path: /var/www/html/web_directory
