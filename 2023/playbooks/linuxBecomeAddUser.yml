@@ -10,7 +10,6 @@
       update_password: on_create
       append: yes
 
-
   - name: Add the user 'svc' with a bash shell
     ansible.builtin.user:
       name: svc

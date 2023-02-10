@@ -1,4 +1,4 @@
-- hosts: centosECOMM:fedoraMailWeb:debianNTP/DNS
+- hosts: centosECOMM:fedoraMailWeb:ubuntuWeb
   become: true
   become_method: enable
   tasks:

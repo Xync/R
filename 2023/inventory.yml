@@ -2,6 +2,7 @@ all:
   children:
     linux:
       hosts:
+        # Public Machines
         centosECOMM:
           # Public CentOS 7 E-Comm
           ansible_host: "172.25.32.11"
@@ -31,6 +32,8 @@ all:
         #  ansible_user: "{{ splunkUser }}"
         #  ansible_password: "{{ splunkPass }}"
         #  ansible_python_interpreter: "/opt/splunk/bin/python3"
+
+        # Internal Machines
         debianNTP/DNS:
           # Internal Debain NTP/DNS machine
           ansible_host: "172.25.32.20"
@@ -44,6 +47,18 @@ all:
           ansible_become_user: "root"
           ansible_become_pass: "changeme"
           ansible_become_method: su
+        
+        # User Machines
+        ubuntuWeb:
+          # User Ubuntu 14 Web
+          ansible_host: "172.25.32.11"
+          ansible_port: "22"
+          ansible_connection: "ssh"
+          ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
+          ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+          ansible_user: "{{ ubuntuWebUser }}"
+          ansible_password: "{{ ubuntuWebPass }}"
+
     windows:
       hosts:
        dc:
@@ -68,4 +83,6 @@ all:
     splunkPass: "changemenow"
     debianUser: "sysadmin"
     debianPass: "changeme"
+    ubuntuWebUser: "sysadmin"
+    ubuntuWebPass: "changeme"
 
