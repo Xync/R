@@ -51,8 +51,8 @@ all:
           ansible_python_interpreter: "/usr/bin/python2"
           ansible_become_pass: "changeme"
         ubuntuWkst:
-          # User Ubuntu 14 Web
-          ansible_hosts: 172.25.32.[1:255]
+          hosts:
+             172.25.32.[1:255]
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
