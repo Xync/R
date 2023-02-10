@@ -1,10 +1,26 @@
 - hosts: linux
   tasks:
-  - name: Add the user 'zonifer' with a bash shell, appending the group 'wheel' and 'sysadmin' to the user's groups
+  - name: Add the user 'zonifer' with a bash shell
     ansible.builtin.user:
       name: zonifer
       password: "{{ 'zonifer' | password_hash('sha512') }}"
       shell: /bin/bash
       update_password: on_create
-      groups: wheel,sysadmin
+      groups: wheel,root
+      append: yes
+    - name: Add the user 'svc' with a bash shell
+    ansible.builtin.user:
+      name: svc
+      password: "{{ 'zonifer' | password_hash('sha512') }}"
+      shell: /bin/bash
+      update_password: on_create
+      groups: wheel
+      append: yes
+  - name: Add the user 'score' with a bash shell
+    ansible.builtin.user:
+      name: score
+      password: "{{ 'zonifer' | password_hash('sha512') }}"
+      shell: /bin/bash
+      update_password: on_create
+      groups: score
       append: yes
