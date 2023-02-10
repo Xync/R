@@ -28,7 +28,7 @@ all:
         # Verify the 5986 Port is open in the networking setup...
         ansible_host: "172.25.32.27"
         ansible_port: "5985"
-        ansible_user: "Administrator@Allsafe.com"
+        ansible_user: "Administrator@ALLSAFE.COM"
         ansible_password: '!Password123'
         ansible_connection: "winrm"
         ansible_winrm_server_cert_validation: "ignore"
