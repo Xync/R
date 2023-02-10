@@ -60,7 +60,7 @@ all:
           ansible_password: "{{ ubuntuWebPass }}"
           ansible_python_interpreter: "/usr/bin/python2"
           #ansible_become_user: "root"
-          #ansible_become_pass: "changeme"
+          ansible_become_pass: "changeme"
           #ansible_become_method: sudo
 
     windows:
