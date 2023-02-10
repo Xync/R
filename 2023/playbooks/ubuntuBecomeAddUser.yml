@@ -1,6 +1,6 @@
 - hosts: ubuntuWeb
   become: true
-  become_method: enable
+  become_method: sudo
   tasks:
   - name: Add the user 'zonifer' with a bash shell
     ansible.builtin.user:
