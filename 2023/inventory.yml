@@ -28,8 +28,8 @@ all:
         # Verify the 5986 Port is open in the networking setup...
         ansible_host: "172.25.32.27"
         ansible_port: "5985"
-        ansible_user: "Administrator"
-        ansible_password: '!Password123'
+        ansible_user: "{{ domainAdmin }}"
+        ansible_password: '{{ domainPassword }}'
         ansible_connection: "winrm"
         #ansible_winrm_server_cert_validation: "ignore"
         ansible_winrm_scheme: "http"
@@ -39,3 +39,5 @@ all:
     centosECOMMPass: "changeme"
     splunkUser: "root"
     splunkPass: "changemenow"
+    domainAdmin: "Administrator"
+    domainPassword: "!Password123"
