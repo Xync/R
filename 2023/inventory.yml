@@ -31,8 +31,8 @@ all:
         ansible_user: "Administrator"
         ansible_password: "!Password123"
         ansible_connection: "winrm"
-        ansible_winrm_server_cert_validation: "ignore"
-        ansible_winrm_scheme: "https"
+        #ansible_winrm_server_cert_validation: "ignore"
+        ansible_winrm_scheme: "http"
 
   vars:
     centosECOMMUser: "root"
