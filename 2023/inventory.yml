@@ -26,7 +26,7 @@ all:
        dc:
         # How to setup winrm: https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
         # Verify the 5986 Port is open in the networking setup...
-        ansible_host: "172.25.32.23"
+        ansible_host: "172.25.32.27"
         ansible_port: "5985"
         ansible_user: "Administrator"
         ansible_password: "!Password123"
