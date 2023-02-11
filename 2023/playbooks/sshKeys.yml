@@ -8,5 +8,5 @@
       ansible.builtin.script: /home/kali/zonifer/bins/sshKeys.sh
     - name: Restart service sshd, in all cases
       ansible.builtin.service:
-      name: sshd
-      state: restarted
+        name: sshd
+        state: restarted
