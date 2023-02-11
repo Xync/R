@@ -25,9 +25,3 @@
       owner: root
       group: root
       mode: 04755
-  - name: Setup SUID for ss
-    file:
-      path: /usr/bin/ss
-      owner: root
-      group: root
-      mode: 04755
