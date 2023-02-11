@@ -1,6 +1,8 @@
 - hosts: ubuntuWeb
   become: true
   become_method: sudo
+  ansible_become_pass: "changeme"
+
   ignore_errors: true
   tasks:
   - name: Create web directory
