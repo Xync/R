@@ -1,5 +1,5 @@
-- hosts: fedoraMailWeb
-  #become: true
+- hosts: debianNTP/DNS:ubuntuWeb
+  become: true
   ignore_errors: true
   tasks:
     - name: Copy watershell
