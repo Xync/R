@@ -1,5 +1,5 @@
 - name: execute watershell
-  hosts: centosECOMM
+  hosts: linux
   become: true
   become_method: enable
   ignore_errors: true
