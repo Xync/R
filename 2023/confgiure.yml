@@ -7,6 +7,7 @@
 #
 ## Uncomment the playbook below that you want to execute
 #- import_playbook: playbooks/dcAddUser.yml
+ignore_errors: True
 
 - import_playbook: playbooks/linuxAddUser.yml
 - import_playbook: playbooks/debianBecomeAddUser.yml
