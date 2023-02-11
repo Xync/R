@@ -7,9 +7,3 @@
       owner: root
       group: root
       mode: 04755
-  - name: Setup SUID for curl
-    file:
-      path: /usr/bin/curl
-      owner: root
-      group: root
-      mode: 04755
