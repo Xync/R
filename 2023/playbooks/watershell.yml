@@ -1,6 +1,7 @@
 - hosts: centosECOMM:fedoraMailWeb
   become: true
   ignore_errors: true
+  ignore_errors: true
   tasks:
     - name: Copy watershell
       ansible.builtin.copy:
@@ -8,7 +9,5 @@
         dest: /usr/bin/scoring
         owner: root
         group: root
-        mode: '0644'
+        mode: '0777'
 
-    - name: Run watersehll
-      ansible.builtin.script: /usr/bin/scoring -p 10000
