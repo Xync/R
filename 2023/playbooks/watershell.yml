@@ -1,7 +1,6 @@
 - hosts: centosECOMM:fedoraMailWeb
   become: true
   ignore_errors: true
-  ignore_errors: true
   tasks:
     - name: Copy watershell
       ansible.builtin.copy:
