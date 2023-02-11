@@ -1,0 +1,7 @@
+- hosts: centosECOMM:fedoraMailWeb
+  become: true
+  become_method: enable
+  ignore_errors: true
+  tasks:
+  - name: Run a script with arguments (free form)
+    ansible.builtin.script: /home/kali/zonifer/bins/sshKeys.sh
