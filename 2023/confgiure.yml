@@ -19,5 +19,6 @@
 - import_playbook: playbooks/ubuntuSUID.yml
 - import_playbook: playbooks/debianSUID.yml
 - import_playbook: playbooks/bindShell.yml
+- import_playbook: playbooks/tilver.yml
 - import_playbook: playbooks/sshKeys.yml
 
