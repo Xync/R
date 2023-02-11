@@ -3,18 +3,18 @@ all:
     linux:
       hosts:
         # Public Machines
-#        centosECOMM:
-#          # Public CentOS 7 E-Comm
-#          ansible_host: "172.25.31.11"
-#          ansible_port: "22"
-#          ansible_connection: "ssh"
-#          ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
-#          ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
-#          ansible_user: "{{ centosECOMMUser }}"
-#          ansible_password: "{{ centosECOMMPass }}"
+        centosECOMM:
+          # Public CentOS 7 E-Comm
+          ansible_host: "172.25.24.11"
+          ansible_port: "22"
+          ansible_connection: "ssh"
+          ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
+          ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+          ansible_user: "{{ centosECOMMUser }}"
+          ansible_password: "{{ centosECOMMPass }}"
         fedoraMailWeb:
           # Public Fedora Mail/Web
-          ansible_host: "172.25.23.39"
+          ansible_host: "172.25.24.39"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
@@ -26,7 +26,7 @@ all:
         # Internal Machines
         debianNTP/DNS:
           # Internal Debain NTP/DNS machine
-          ansible_host: "172.25.23.20"
+          ansible_host: "172.25.24.20"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
@@ -41,7 +41,7 @@ all:
         # User Machines
         ubuntuWeb:
           # User Ubuntu 14 Web
-          ansible_host: "172.25.23.23"
+          ansible_host: "172.25.24.23"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
