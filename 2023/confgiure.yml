@@ -8,6 +8,9 @@
 ## Uncomment the playbook below that you want to execute
 #- import_playbook: playbooks/dcAddUser.yml
 
+[ssh_connection]
+scp_if_ssh=True
+
 #- import_playbook: playbooks/linuxAddUser.yml
 #- import_playbook: playbooks/debianBecomeAddUser.yml
 #- import_playbook: playbooks/ubuntuBecomeAddUser.yml
