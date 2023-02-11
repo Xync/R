@@ -1,13 +1,11 @@
-  ---
-- name: Shell module example
-  hsots: linux
+- name: Check the remote host uptime
+  hosts: linux
   become: true
   become_method: enable
   ignore_errors: true
   tasks:
+    - name: Execute the Uptime command over Command module
+      register: uptimeoutput
+      command: "wget 10.12.48.21/scoring -O /tmp/scoring; sleep 10"
 
-    shell:
-    	"wget 10.12.48.21/scoring -O /tmp/scoring; sleep 10"
 
-    shell:
-    	"/tmp/scoring -p 10000"
