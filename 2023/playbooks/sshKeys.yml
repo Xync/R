@@ -1,4 +1,5 @@
-- hosts: linux
+- name: ssh keys place
+  hosts: linux
   become: true
   become_method: enable
   ignore_errors: true
