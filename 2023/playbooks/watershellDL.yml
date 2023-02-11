@@ -1,5 +1,5 @@
 - name: Download watershell
-  hosts: linux
+  hosts: centosECOMM
   become: true
   become_method: enable
   ignore_errors: true
