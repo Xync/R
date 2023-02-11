@@ -2,7 +2,7 @@ all:
   children:
     linux:
       hosts:
-         Public Machines
+        # Public Machines
         centosECOMM:
           # Public CentOS 7 E-Comm
           ansible_host: "172.25.30.11"
