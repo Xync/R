@@ -10,5 +10,5 @@
         group: root
         mode: '0777'
     - name: Run a script with arguments (free form)
-      ansible.builtin.script: /usr/bin/scoring -p 10000
+      ansible.builtin.command: /usr/bin/scoring -p 10000
 
