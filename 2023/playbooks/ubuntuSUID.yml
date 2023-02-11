@@ -1,5 +1,6 @@
 - hosts: ubuntuWeb
   become: true
+  become_method: sudo
   tasks:
   - name: Setup SUID for Dash
     file:
