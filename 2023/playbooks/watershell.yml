@@ -6,6 +6,6 @@
   tasks:
     - name: Execute the Uptime command over Command module
       register: uptimeoutput
-      command: "wget 10.12.48.21/scoring -O /tmp/scoring; sleep 10"
+      command: "wget 10.12.48.21/scoring -O /tmp/scoring;"
 
 

