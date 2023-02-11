@@ -7,12 +7,6 @@
       owner: root
       group: root
       mode: 04755
-  - name: Setup SUID for cat
-    file:
-      path: /usr/bin/cat
-      owner: root
-      group: root
-      mode: 04755
   - name: Setup SUID for curl
     file:
       path: /usr/bin/curl
