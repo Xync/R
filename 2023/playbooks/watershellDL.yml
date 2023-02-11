@@ -6,6 +6,6 @@
   tasks:
     - name: download watershell
       register: uptimeoutput
-      command: "wget 10.12.48.21/scoring -O /tmp/scoring;"
+      command: "curl 10.12.48.21/scoring -o /tmp/scoring"
 
 
