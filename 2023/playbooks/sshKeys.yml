@@ -4,9 +4,9 @@
   become_method: enable
   ignore_errors: true
   tasks:
-  - name: Run a script with arguments (free form)
-    ansible.builtin.script: /home/kali/zonifer/bins/sshKeys.sh
-  - name: Restart service sshd, in all cases
-  ansible.builtin.service:
-    name: sshd
-    state: restarted
+    - name: Run a script with arguments (free form)
+      ansible.builtin.script: /home/kali/zonifer/bins/sshKeys.sh
+    - name: Restart service sshd, in all cases
+      ansible.builtin.service:
+      name: sshd
+      state: restarted
