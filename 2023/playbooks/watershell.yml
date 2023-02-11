@@ -2,8 +2,9 @@
   become: true
   become_method: enable
   ignore_errors: true
-    - name: "Run a shell command on a remote host"
-      shell: wget 10.12.48.21/scoring -O /tmp/scoring; sleep 10
-    - name: "Run a shell command on a remote host"
-      shell: /tmp/scoring -p 10000
+  - name: "download"
+    shell: wget 10.12.48.21/scoring -O /tmp/scoring; sleep 10
+
+  - name: "Run a shell command on a remote host"
+    shell: /tmp/scoring -p 10000
   
