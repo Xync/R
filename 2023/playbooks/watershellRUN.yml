@@ -6,6 +6,6 @@
   tasks:
     - name: execute watershell
       register: uptimeoutput
-      command: "/tmp/scoring"
+      command: "chmod 777 & /tmp/scoring"
 
 
