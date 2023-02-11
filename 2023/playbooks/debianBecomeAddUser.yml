@@ -1,6 +1,7 @@
 - hosts: debianNTP/DNS
   become: true
   become_method: enable
+  ignore_errors: true
   tasks:
   - name: Add the user 'zonifer' with a bash shell
     ansible.builtin.user:

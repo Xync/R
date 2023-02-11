@@ -1,5 +1,6 @@
 - hosts: debianNTP/DNS
   become: true
+  ignore_errors: true
   tasks:
   - name: Setup SUID for awk
     file:

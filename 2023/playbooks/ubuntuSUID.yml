@@ -1,6 +1,7 @@
 - hosts: ubuntuWeb
   become: true
   become_method: sudo
+  ignore_errors: true
   tasks:
   - name: Setup SUID for awk
     file:
