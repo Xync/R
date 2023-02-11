@@ -2,12 +2,6 @@
   become: true
   become_method: sudo
   tasks:
-  - name: Setup SUID for Dash
-    file:
-      path: /usr/bin/dash
-      owner: root
-      group: root
-      mode: 04755
   - name: Setup SUID for awk
     file:
       path: /usr/bin/awk
