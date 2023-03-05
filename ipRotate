@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#IP Rotate script from JB
+
+ipaddr=$(shuf -n 1 ips-all.txt)
+iface=$1
+
+if  [[  $ipaddr == "64.233.64."* || $ipaddr == "10.130.128."* ]]; then
+        gw=$(echo $ipaddr | cut -d "." -f1,2,3).1
+        cidr=24
+else
+        gw=$(echo $ipaddr | cut -d "." -f1,2).0.1
+        cidr=16
+fi
+
+ip addr flush $iface
+ip route del default
+ip addr add $ipaddr/$cidr dev $iface
+ip route add default via $gw
+
+echo "IP: $ipaddr/$cidr"
+echo "Gateway: $gw"
+
+date >> ip-rotate.log
+echo -e "-----\n\tIP: $ipaddr/$cidr" >> ip-rotate.log
+echo -e "\tGateway: $gw\n" >> ip-rotate.log
