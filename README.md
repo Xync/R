@@ -1,3 +1,8 @@
-# Sliver.sh
-This will download a malicous service that will give sliver a connection back. Make sure to change the IP in sliver.sh and the path to your sliver payload
+# Files
+worker.service -> sliver interactive
+systemd-ini.service -> sliver beacon
+sliver.sh -> payload to get all files onto host and execute
+
+watershell -> low level back door
+
 
