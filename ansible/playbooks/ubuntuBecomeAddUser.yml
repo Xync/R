@@ -1,39 +1,17 @@
 - hosts: ubuntuWeb
   become: true
-  become_method: sudo
   ignore_errors: true
   tasks:
-  - name: Add the user 'zonifer' with a bash shell
-    ansible.builtin.user:
-      name: zonifer
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      groups: root,sudo
-      append: yes
-
-  - name: Add the user 'svc' with a bash shell
-    ansible.builtin.user:
-      name: svc
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      groups: sudo
-      append: yes
-
-  - name: Add the user 'score' with a bash shell
-    ansible.builtin.user:
-      name: score
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      groups: sudo
-      append: yes
-
-  - name: Add the user 'whiteTeam' with a bash shell
-    ansible.builtin.user:
-      name: whiteTeam
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      append: yes
+    - name: Add users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        password: "{{ item.password | password_hash('sha512') }}"
+        shell: /bin/bash
+        update_password: on_create
+        groups: "{{ item.groups | default([]) }}"
+        append: yes
+      loop:
+        - { name: 'zonifer', password: 'unique_password_zonifer', groups: ['root', 'sudo'] }
+        - { name: 'svc', password: 'unique_password_svc', groups: ['sudo'] }
+        - { name: 'score', password: 'unique_password_score', groups: ['sudo'] }
+        - { name: 'whiteTeam', password: 'unique_password_whiteTeam' }

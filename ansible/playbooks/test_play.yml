@@ -1,0 +1,8 @@
+---
+- name: Test Ansible on the inventory
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Print a test message
+      debug:
+        msg: "Ansible is working on {{ inventory_hostname }}!"
