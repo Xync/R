@@ -1,6 +1,5 @@
-- hosts: centosECOMM:fedoraMailWeb
+- hosts: all
   become: true
-  become_method: enable
   ignore_errors: true
   tasks:
     - name: Add users

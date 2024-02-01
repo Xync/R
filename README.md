@@ -1,11 +1,9 @@
-# TODO
-Change the IP variable in persistence/shell_scripts/remote.sh to your IP
+# How to run Ansible
+The plays are defined in ansible/playbooks. Then they are referenced in configure.yml, if you want to add new plays put them in the playbook dir and then add it to the configure.yml file
 
-# Things to do
-1: Change IP & payloads in Persistence/shell_scripts/sliver.sh
+To run:
+ansible-playbook -i inventory.yml confgiure.yml
 
-# Ansible
-This is the ansible deployment method that can be used if access is given before hand
 
 # Windows
 This folder is full of windows bits
