@@ -2,9 +2,7 @@ all:
   children:
     linux:
       hosts:
-         Public Machines
         centosECOMM:
-          # Public CentOS 7 E-Comm
           ansible_host: "172.25.28.11"
           ansible_port: "22"
           ansible_connection: "ssh"
@@ -13,7 +11,6 @@ all:
           ansible_user: "{{ centosECOMMUser }}"
           ansible_password: "{{ centosECOMMPass }}"
         fedoraMailWeb:
-          # Public Fedora Mail/Web
           ansible_host: "172.25.28.39"
           ansible_port: "22"
           ansible_connection: "ssh"
@@ -22,10 +19,7 @@ all:
           ansible_user: "{{ fedoraUser }}"
           ansible_password: "{{ fedoraPass }}"
           ansible_python_interpreter: "/usr/bin/python"
-
-        # Internal Machines
         debianNTP/DNS:
-          # Internal Debain NTP/DNS machine
           ansible_host: "172.25.28.20"
           ansible_port: "22"
           ansible_connection: "ssh"
@@ -37,10 +31,7 @@ all:
           ansible_become_user: "root"
           ansible_become_pass: "changeme"
           ansible_become_method: su
-        
-        # User Machines
         ubuntuWeb:
-          # User Ubuntu 14 Web
           ansible_host: "172.25.28.23"
           ansible_port: "22"
           ansible_connection: "ssh"
@@ -50,8 +41,6 @@ all:
           ansible_password: "{{ ubuntuWebPass }}"
           ansible_python_interpreter: "/usr/bin/python2"
           ansible_become_pass: "changeme"
-
-
 
   vars:
     centosECOMMUser: "root"
@@ -64,19 +53,3 @@ all:
     debianPass: "changeme"
     ubuntuWebUser: "sysadmin"
     ubuntuWebPass: "changeme"
-
-
-
-#    windows:
-#      hosts:
-#       dc:
-#        # How to setup winrm: https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html
-#        # Verify the 5986 Port is open in the networking setup...
-#        ansible_host: "172.25.32.27"
-#        ansible_port: "5985"
-#        ansible_user: "Administrator"
-#        ansible_password: '!Password123'
-#        ansible_connection: "winrm"
-#        ansible_winrm_server_cert_validation: "ignore"
-#        ansible_winrm_scheme: "http"
-#        #ansible_winrm_transport: kerberos
