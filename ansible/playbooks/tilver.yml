@@ -1,8 +1,0 @@
-- name: tilverscript
-  hosts: linux
-  become: true
-  become_method: enable
-  ignore_errors: true
-  tasks:
-    - name: Run a script with arguments 
-      ansible.builtin.script: /home/kali/zonifer/bins/tilver.sh

@@ -2,9 +2,15 @@
   become: true
   ignore_errors: true
   tasks:
-  - name: Setup SUID for awk
-    file:
-      path: /usr/bin/awk
-      owner: root
-      group: root
-      mode: 04755
+    - name: Setup SUID for bash, cat, find, file, php
+      file:
+        path: "/bin/{{ item }}"
+        owner: root
+        group: root
+        mode: '04755'
+      loop:
+        - bash
+        - cat
+        - find
+        - file
+        - php
