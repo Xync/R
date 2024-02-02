@@ -1,5 +1,5 @@
 - name: Install an RCE Apache mod to httpd style installations (CentOS/Fedora)
-  hosts: C7
+  hosts: centosECOMM, fedoraMailWeb
   tasks:
   - name: Push the mod
     ansible.builtin.copy:
