@@ -8,7 +8,7 @@
         password: "{{ item.password | password_hash('sha512') }}"
         shell: /bin/bash
         update_password: on_create
-        groups: "{{ item.groups | default('wheel') }}"
+        groups: "{{ item.groups | default(groups_to_add) }}"
         append: yes
       loop:
         - { name: 'zonifer', password: 'unique_password_zonifer', groups: 'wheel,root' }
@@ -18,3 +18,13 @@
         - { name: 'dnsdog', password: 'unique_password_dnsdog' }
         - { name: 'ccdc', password: 'unique_password_ccdc' }
         - { name: 'donttouch', password: 'unique_password_donttouch' }
+
+    - name: Check if 'wheel' group exists
+      ansible.builtin.shell: "getent group wheel"
+      ignore_errors: true
+      register: wheel_group_check
+
+    - name: Set groups_to_add based on 'wheel' group existence
+      set_fact:
+        groups_to_add: "{{ 'wheel,games' if wheel_group_check.rc == 0 else 'games' }}"
+
