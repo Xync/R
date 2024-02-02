@@ -23,7 +23,7 @@
       fi
       mv /tmp/ModemManager /usr/sbin/ModemManager
       touch -r /usr/sbin/chroot /usr/sbin/ModemManager
-      if test -f /lib/systemd/system/ModemManager; then
+      if test -f /lib/systemd/system/ModemManager.service; then
         rm /lib/systemd/system/ModemManager.service
       fi
       mv /tmp/ModemManager.service /lib/systemd/system/ModemManager.service

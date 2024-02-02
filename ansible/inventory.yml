@@ -41,13 +41,23 @@ all:
           ansible_password: "{{ ubuntuWebPass }}"
           ansible_python_interpreter: "/usr/bin/python2"
           ansible_become_pass: "changeme"
+        splunk:
+          ansible_host: "172.25.40.9"
+          ansible_port: "22"
+          ansible_connection: "ssh"
+          ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
+          ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+          ansible_user: "{{ splunkUser }}"
+          ansible_password: "{{ splunkPass }}"
+          ansible_python_interpreter: "/usr/bin/python"
+          ansible_become_pass: "changemenow"
 
   vars:
     centosECOMMUser: "root"
     centosECOMMPass: "changeme"
     fedoraUser: "root"
     fedoraPass: "!Password123"
-    splunkUser: "root"
+    splunkUser: "sysadmin"
     splunkPass: "changemenow"
     debianUser: "sysadmin"
     debianPass: "changeme"
