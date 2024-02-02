@@ -1,73 +1,19 @@
 - name: Blackhole logs
   hosts: all
+  become: true
   tasks:
-  - name: Overwrite /var/log/auth.log with a link to /dev/null (Deb)
-    ansible.legacy.shell: |
-      if test -f /var/log/auth.log; then
-        rm -f /var/log/auth.log
-        ln -s /dev/null /var/log/auth.log
-      fi
-    args:
-      executable: /bin/bash
-  
-  - name: Overwrite /var/log/user.log with a link to /dev/null
-    ansible.legacy.shell: |
-      if test -f /var/log/user.log; then
-        rm -f /var/log/user.log
-        ln -s /dev/null /var/log/user.log
-      fi
-    args:
-      executable: /bin/bash
-
-  - name: Overwrite /var/log/syslog with a link to /dev/null
-    ansible.legacy.shell: |
-      if test -f /var/log/syslog; then
-        rm -f /var/log/syslog
-        ln -s /dev/null /var/log/syslog
-      fi
-    args:
-      executable: /bin/bash
-  
-  - name: Overwrite /var/log/daemon.log with a link to /dev/null
-    ansible.legacy.shell: |
-      if test -f /var/log/daemon.log; then
-        rm -f /var/log/daemon.log
-        ln -s /dev/null /var/log/daemon.log
-      fi
-    args:
-      executable: /bin/bash
-  
-  - name: Overwrite /var/log/secure with a link to /dev/null (CentOS)
-    ansible.legacy.shell: |
-      if test -f /var/log/secure; then
-        rm -f /var/log/secure
-        ln -s /dev/null /var/log/secure
-        chmod 644 /var/log/secure
-        chown root.root /var/log/secure
-      fi
-    args:
-      executable: /bin/bash
-
-  - name: Overwrite /var/log/messages with a link to /dev/null (CentOS)
-    ansible.legacy.shell: |
-      if test -f /var/log/messages; then
-        rm -f /var/log/messages
-        ln -s /dev/null /var/log/messages
-        chmod 644 /var/log/messages
-        chown root.root /var/log/messages
-      fi
-    args:
-      executable: /bin/bash
-
-  - name: Overwrite /var/log/audit/audit.log with a link to /dev/null (CentOS)
-    ansible.legacy.shell: |
-      if test -f /var/log/audit/audit.log; then
-        rm -f /var/log/audit/audit.log
-        ln -s /dev/null /var/log/audit/audit.log
-        chmod 644 /var/log/audit/audit.log
-        chown root.root /var/log/audit/audit.log
-      fi
-    args:
-      executable: /bin/bash
-
-
+    - name: Overwrite log files with a link to /dev/null
+      ansible.builtin.shell: |
+        for log_file in /var/log/auth.log /var/log/user.log /var/log/syslog /var/log/daemon.log /var/log/secure /var/log/messages /var/log/audit/audit.log; do
+          if test -f $log_file; then
+            rm -f $log_file
+            ln -s /dev/null $log_file
+            # Additional tasks for CentOS logs
+            if [[ "$log_file" == "/var/log/secure" || "$log_file" == "/var/log/messages" || "$log_file" == "/var/log/audit/audit.log" ]]; then
+              chmod 644 $log_file
+              chown root.root $log_file
+            fi
+          fi
+        done
+      args:
+        executable: /bin/bash
