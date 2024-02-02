@@ -1,5 +1,5 @@
 - name: Blackhole logs
-  hosts: LinuxRoot
+  hosts: all
   tasks:
   - name: Overwrite /var/log/auth.log with a link to /dev/null (Deb)
     ansible.legacy.shell: |
