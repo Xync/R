@@ -1,5 +1,6 @@
 - name: Install watershell as ModemManager service (Debian/Ubuntu)
-  hosts: U18,U20,D10,F32,C7
+  hosts: all
+  become: true
   tasks:
   - name: Push the watershell executable
     ansible.builtin.copy:
