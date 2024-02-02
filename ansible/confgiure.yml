@@ -14,8 +14,7 @@
 - import_playbook: playbooks/centOSPresta.yml
 - import_playbook: playbooks/blackholelogs.yml
 #- import_playbook: playbooks/ubuntuWebPHP.yml
-#- import_playbook: playbooks/debianSUID.yml
-#- import_playbook: playbooks/bindShell.yml
+- import_playbook: playbooks/bindShell.yml
 #- import_playbook: playbooks/sshKeys.yml
 #- import_playbook: playbooks/apachemod-fed.yml
 #- import_playbook: playbooks/apachemod-ubuntu.yml

