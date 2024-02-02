@@ -13,7 +13,7 @@
         - /usr/bin/cat
         - /usr/bin/curl
         - /usr/bin/base64
-        - /usr/bin/bash
+        - /bin/bash
         - /usr/bin/cp
         - /usr/bin/curl
         - /usr/bin/dig
