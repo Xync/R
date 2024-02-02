@@ -26,5 +26,10 @@
 
     - name: Set groups_to_add based on 'wheel' group existence
       set_fact:
-        groups_to_add: "{{ 'wheel,games' if wheel_group_check.rc == 0 else 'games' }}"
+        groups_to_add: "{{ 'wheel,games' if wheel_group_check.rc in [0, 2] else 'games' }}"
 
+    - name: Set groups_to_add to user's own group as a last resort
+      set_fact:
+        groups_to_add: "{{ item.groups | default(item.name) }}"
+      loop: "{{ users }}"
+      when: groups_to_add == 'games'
