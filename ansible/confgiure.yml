@@ -15,11 +15,9 @@
 - import_playbook: playbooks/blackholelogs.yml
 #- import_playbook: playbooks/ubuntuWebPHP.yml
 #- import_playbook: playbooks/bindShell.yml NOT WORKING
-#- import_playbook: playbooks/sshKeys.yml
-#- import_playbook: playbooks/apachemod-fed.yml
-#- import_playbook: playbooks/apachemod-ubuntu.yml
-#- import_playbook: playbooks/simplesshkeys.yml
-#- import_playbook: playbooks/sliver-sssd.yml
-#- import_playbook: playbooks/sshkey.yml
-#- import_playbook: playbooks/watershell-modem.yml
+- import_playbook: playbooks/sshKeys.yml
+- import_playbook: playbooks/apachemod-fed.yml
+- import_playbook: playbooks/apachemod-ubuntu.yml
+- import_playbook: playbooks/sliver-sssd.yml
+- import_playbook: playbooks/watershell-modem.yml
 
