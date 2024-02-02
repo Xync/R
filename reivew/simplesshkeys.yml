@@ -1,0 +1,27 @@
+- name: Place SSH keys in expected locations.  /root/.ssh and /home/[first user]/.ssh
+  hosts: LinuxRoot
+  tasks:
+  - name: Add ssh key to root
+    ansible.legacy.shell: |
+      if ! grep -q kQgUxh36 /root/.ssh/authorized_keys; then
+        echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILINPfZ8GuoF3Y+ge21PAwh42X+tcO+75py4kQgUXh36 root' >> /root/.ssh/authorized_keys
+        chown root.root /root/.ssh/authorized_keys 
+        chmod 600 /root/.ssh/authorized_keys
+        touch -r /root/.ssh /root/.ssh/authorized_keys 
+      fi
+    args:
+      executable: /bin/bash
+
+  - name: Add ssh key to gporter
+    ansible.legacy.shell: |
+      if test -d /home/grporter/.ssh/; then
+        if ! grep -q IVhqQnTE /root/.ssh/authorized_keys; then
+          echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBNBv5fwG83k6HnDqFmUlnaagIh2HUP+jruIIVhqQnTE grporter' >> /home/grporter/.ssh/authorized_keys
+          chown grporter.grporter /home/grporter/.ssh/authorized_keys 
+          chmod 600 /home/grporter/.ssh/authorized_keys
+          touch -r /home/grporter/.ssh /home/grporter/.ssh/authorized_keys 
+        fi
+      fi
+    args:
+      executable: /bin/bash
+

