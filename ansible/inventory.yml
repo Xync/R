@@ -3,7 +3,7 @@ all:
     linux:
       hosts:
         centosECOMM:
-          ansible_host: "172.25.28.11"
+          ansible_host: "172.25.40.11"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
@@ -11,7 +11,7 @@ all:
           ansible_user: "{{ centosECOMMUser }}"
           ansible_password: "{{ centosECOMMPass }}"
         fedoraMailWeb:
-          ansible_host: "172.25.28.39"
+          ansible_host: "172.25.40.39"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
@@ -20,7 +20,7 @@ all:
           ansible_password: "{{ fedoraPass }}"
           ansible_python_interpreter: "/usr/bin/python"
         debianNTP/DNS:
-          ansible_host: "172.25.28.20"
+          ansible_host: "172.25.40.20"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
@@ -32,7 +32,7 @@ all:
           ansible_become_pass: "changeme"
           ansible_become_method: su
         ubuntuWeb:
-          ansible_host: "172.25.28.23"
+          ansible_host: "172.25.40.23"
           ansible_port: "22"
           ansible_connection: "ssh"
           ansible_ssh_common_args: "-o HostKeyAlgorithms=+ssh-dss"
