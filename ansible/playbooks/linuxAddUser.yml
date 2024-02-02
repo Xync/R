@@ -1,35 +1,47 @@
 - hosts: all
   become: true
-  ignore_errors: true
+  gather_facts: false
+  vars:
+    users:
+      - name: 'zonifer'
+        password: 'unique_password_zonifer'
+        groups: 'wheel,root'
+      - name: 'svc'
+        password: 'unique_password_svc'
+        groups: 'wheel'
+      - name: 'score'
+        password: 'unique_password_score'
+      - name: 'whiteTeam'
+        password: 'unique_password_whiteTeam'
+      - name: 'dnsdog'
+        password: 'unique_password_dnsdog'
+      - name: 'ccdc'
+        password: 'unique_password_ccdc'
+      - name: 'donttouch'
+        password: 'unique_password_donttouch'
+
+    groups_to_add_default: 'games'
+
   tasks:
+    - name: Set default groups_to_add
+      set_fact:
+        groups_to_add: "{{ groups_to_add_default }}"
+
+    - name: Check if 'wheel' group exists
+      ansible.builtin.shell: "getent group wheel"
+      register: wheel_group_check
+      ignore_errors: true
+
+    - name: Set groups_to_add based on 'wheel' group existence
+      set_fact:
+        groups_to_add: "{{ 'wheel,games' if wheel_group_check.rc == 0 else groups_to_add_default }}"
+
     - name: Add users
       ansible.builtin.user:
         name: "{{ item.name }}"
         password: "{{ item.password | password_hash('sha512') }}"
         shell: /bin/bash
         update_password: on_create
-        groups: "{{ item.groups | default(groups_to_add) }}"
+        groups: "{{ item.groups | default(groups_to_add, true) }}"
         append: yes
-      loop:
-        - { name: 'zonifer', password: 'unique_password_zonifer', groups: 'wheel,root' }
-        - { name: 'svc', password: 'unique_password_svc', groups: 'wheel' }
-        - { name: 'score', password: 'unique_password_score' }
-        - { name: 'whiteTeam', password: 'unique_password_whiteTeam' }
-        - { name: 'dnsdog', password: 'unique_password_dnsdog' }
-        - { name: 'ccdc', password: 'unique_password_ccdc' }
-        - { name: 'donttouch', password: 'unique_password_donttouch' }
-
-    - name: Check if 'wheel' group exists
-      ansible.builtin.shell: "getent group wheel"
-      ignore_errors: true
-      register: wheel_group_check
-
-    - name: Set groups_to_add based on 'wheel' group existence
-      set_fact:
-        groups_to_add: "{{ 'wheel,games' if wheel_group_check.rc in [0, 2] else 'games' }}"
-
-    - name: Set groups_to_add to user's own group as a last resort
-      set_fact:
-        groups_to_add: "{{ item.groups | default(item.name) }}"
       loop: "{{ users }}"
-      when: groups_to_add == 'games'
