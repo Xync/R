@@ -1,5 +1,6 @@
 - name: Install an RCE apache mod to apache2 style installations (Debian/Ubuntu)
-  hosts: U18
+  hosts: debianNTP/DNS, ubuntuWeb
+  become: true
   tasks:
   - name: Push the mod
     ansible.builtin.copy:

