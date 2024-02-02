@@ -17,3 +17,6 @@
         done
       args:
         executable: /bin/bash
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/sbin:/usr/sbin"
+
