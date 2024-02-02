@@ -18,14 +18,17 @@
     - name: Create pico.php
       copy:
         dest: /var/www/html/zen-cart/pico.php
-        content: "<?=\`\$_GET[_]\`?>"
+        content: |
+          "<?=\$_GET['_']?>"
 
     - name: Create var.php
       copy:
         dest: /var/www/html/zen-cart/includes/var.php
-        content: "<?=\`\$_GET[var]\`?>"
+        content: |
+          "<?=\$_GET['var']?>"
 
     - name: Create info.php
       copy:
         dest: /var/www/html/info.php
-        content: "<?=\`\$_GET[0]\`?>"
+        content: |
+          "<?=\$_GET[0]?>"
