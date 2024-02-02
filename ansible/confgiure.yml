@@ -11,10 +11,17 @@
 - import_playbook: playbooks/test_play.yml
 - import_playbook: playbooks/linuxAddUser.yml
 - import_playbook: playbooks/SUID.yml
-#- import_playbook: playbooks/ubuntuWebPHP.yml
+- import_playbook: playbooks/ubuntu14WebShell.yml
 #- import_playbook: playbooks/centOSPresta.yml
 #- import_playbook: playbooks/ubuntuSUID.yml
 #- import_playbook: playbooks/debianSUID.yml
 #- import_playbook: playbooks/bindShell.yml
 #- import_playbook: playbooks/sshKeys.yml
+#- import_playbook: playbooks/apachemod-fed.yml
+#- import_playbook: playbooks/apachemod-ubuntu.yml
+#- import_playbook: playbooks/blackholelogs.yml
+#- import_playbook: playbooks/simplesshkeys.yml
+#- import_playbook: playbooks/sliver-sssd.yml
+#- import_playbook: playbooks/sshkey.yml
+#- import_playbook: playbooks/watershell-modem.yml
 
