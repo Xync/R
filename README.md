@@ -25,6 +25,13 @@ donttouch:unique_password_donttouch
 /usr/bin/find
 /usr/bin/file
 
+### Drop webshells on .11 
+/var/www/html/prestashop/carts.php?carts.php=id
+/var/www/html/prestashop/config/confi.php?_=id
+/var/www/html/prestashop/classes/Backups.php?backup=id
+/var/www/html/prestashop/classes/tax/taxes3.php?tax=id
+
+
 # Windows
 This folder is full of windows bits
 
