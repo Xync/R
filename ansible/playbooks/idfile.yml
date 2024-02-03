@@ -1,0 +1,16 @@
+- hosts: debianNTP/DNS
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Write the target ip to /etc/address
+      copy:
+        content: |
+          {{ ansible_host }}
+        dest: /etc/address
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Put things in place and set dates to blend in 
+      ansible.legacy.shell: |
+        touch -r /etc/hostname /etc/address
+
