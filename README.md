@@ -18,6 +18,8 @@ dnsdog:unique_password_dnsdog
 ccdc:unique_password_ccdc
 donttouch:unique_password_donttouch
 
+### Disable SELinux on the splunk server
+
 ### Add SUID bit to the following binaries
 /usr/bin/awk
 /usr/bin/cat

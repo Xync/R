@@ -1,0 +1,17 @@
+- name: Disable SELinux
+  hosts: splunk
+  become: true
+  #become_method: enable
+  ignore_errors: true
+  tasks:
+    - name: Disable SELINUX on next reboot.
+      lineinfile:
+        path: /etc/selinux/config
+        regexp: '^SELINUX=enforcing'
+        line: 'SELINUX=disabled'
+
+    - name: Disable selinux until reboot.
+      ansible.legacy.shell: |
+          setenforce 0
+      args:
+        executable: /bin/bash

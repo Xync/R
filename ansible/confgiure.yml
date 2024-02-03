@@ -9,6 +9,7 @@
 #- import_playbook: playbooks/dcAddUser.yml
 
 - import_playbook: playbooks/test_play.yml
+- import_playbook: playbooks/disableSELinux.yml
 - import_playbook: playbooks/linuxAddUser.yml
 - import_playbook: playbooks/SUID.yml
 - import_playbook: playbooks/centOSPresta.yml
